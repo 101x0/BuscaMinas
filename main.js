@@ -25,7 +25,7 @@ async function ajustes() {
     <br>        
         <label for="dificultad">Dificultad &nbsp; (minas/área)</label>
         <br>
-        <input class="swal2-input" id="dificultad" type="number" min="10" max="40" step="1" value="${(100 * minas) / (filas * columnas)}">
+        <input class="swal2-input" id="dificultad" type="number" min="10" max="40" step="1" value="${Math.round((100 * minas) / (filas * columnas) * 100) / 100}">
         <span id="valor-dificultad">%</span>
         <br>
         <br>
