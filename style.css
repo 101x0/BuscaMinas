@@ -35,7 +35,8 @@ td,
 #juego_nuevo,
 #minas,
 #ajustes,
-#ayuda {
+#ayuda,
+#tiempo {
   box-shadow: inset 3px 3px 0 0 rgba(255, 255, 2555, 0.5),
     inset -3px -3px 0 0 rgba(0, 0, 0, 0.25);
 }
@@ -43,9 +44,10 @@ td,
 #numMinas,
 #juego_nuevo,
 #ajustes,
-#ayuda {
+#ayuda,
+#tiempo {
   padding: 10px;
-  margin: 10px 40px;
+  margin: 10px 20px;
   font-family: cursive;
   height: 45px;
 }
@@ -53,6 +55,13 @@ td,
 #juego_nuevo {
   background: skyblue;
   cursor: pointer;
+}
+
+#tiempo {
+  min-width: 70px;
+  background: gray;
+  color: white;
+  text-align: center;
 }
 
 #numMinas {

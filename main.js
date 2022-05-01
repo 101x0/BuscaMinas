@@ -6,11 +6,15 @@ let enJuego = true;
 let juegoIniciado = false;
 let marcas = 0;
 let tablero = [];
+let cont = 0;
+let id;
+let min = 0;
 
 nuevoJuego();
 
 function nuevoJuego() {
   reiniciar();
+  mostrarTiempo();
   generarTableroHTML();
   generarTableroJuego();
   aniadirEventos();
@@ -25,7 +29,9 @@ async function ajustes() {
     <br>        
         <label for="dificultad">Dificultad &nbsp; (minas/área)</label>
         <br>
-        <input class="swal2-input" id="dificultad" type="number" min="10" max="40" step="1" value="${Math.round((100 * minas) / (filas * columnas) * 100) / 100}">
+        <input class="swal2-input" id="dificultad" type="number" min="10" max="40" step="1" value="${
+          Math.round(((100 * minas) / (filas * columnas)) * 100) / 100
+        }">
         <span id="valor-dificultad">%</span>
         <br>
         <br>
@@ -60,6 +66,27 @@ async function ajustes() {
   nuevoJuego();
 }
 
+function mostrarTiempo() {
+  cont = -1;
+
+  sumarTiempo();
+  id = setInterval(sumarTiempo, 1000);
+}
+
+function sumarTiempo() {
+  cont++;
+  let seg = 0;
+
+  if (cont > 59) {
+    cont = 0;
+    min++;
+  }
+
+  seg = cont < 10 ? "0" + `${cont}` : cont;
+  let tiempo = `${min < 10 ? "0" + `${min}` : min}:${seg}`;
+  document.getElementById("tiempo").innerHTML = tiempo;
+}
+
 function ayuda() {
   Swal.fire({
     title: "Controles:",
@@ -74,9 +101,11 @@ function ayuda() {
 }
 
 function reiniciar() {
+  clearTimeout(id);
   marcas = 0;
   enJuego = true;
   juegoIniciado = false;
+  min = 0;
 }
 
 function generarTableroHTML() {
@@ -240,6 +269,7 @@ function verificarGanador() {
       popup: "animate__animated animate__fadeOutUp",
     },
   });
+  clearTimeout(id);
 }
 
 function verificarPerdedor() {
@@ -259,6 +289,7 @@ function verificarPerdedor() {
             popup: "animate__animated animate__fadeOutUp",
           },
         });
+        clearTimeout(id);
       }
     }
   }
